@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مدرّب السيلز</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f6e56">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="مدرّب السيلز">
+<style>
+:root{--bg:#f6f4ef;--card:#fff;--tx:#1c1b18;--mu:#6b675e;--ac:#0f6e56;--ac2:#e1f5ee;--bd:#e2ded3;--me:#0f6e56;--mt:#fff;--bad:#a32d2d;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161512;--card:#211f1b;--tx:#efece4;--mu:#a09b8f;--ac:#5dcaa5;--ac2:#10342b;--bd:#37332b;--me:#1d9e75;--mt:#fff;--bad:#f09595;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161512;--card:#211f1b;--tx:#efece4;--mu:#a09b8f;--ac:#5dcaa5;--ac2:#10342b;--bd:#37332b;--me:#1d9e75;--mt:#fff;--bad:#f09595;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;line-height:1.6;font-size:16px}
+.wrap{max-width:640px;margin:0 auto;padding:12px 12px 130px}
+h1{font-size:20px;margin:0}.hd{display:flex;gap:12px;align-items:center;margin:4px 0 14px}.lg{width:44px;height:44px;border-radius:13px;background:var(--ac);display:grid;place-items:center;font-size:23px}
+:root{--gl:rgba(255,255,255,.55);--gb:rgba(255,255,255,.65)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--gl:rgba(28,30,66,.5);--gb:rgba(255,255,255,.22)}}
+:root[data-theme="dark"]{--gl:rgba(28,30,66,.5);--gb:rgba(255,255,255,.22)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(60% 40% at 12% 8%,rgba(80,110,255,.3),transparent 70%),radial-gradient(50% 40% at 92% 35%,rgba(170,80,255,.24),transparent 70%),radial-gradient(60% 40% at 25% 98%,rgba(30,170,255,.24),transparent 70%)}
+.glass,.tabs{background:var(--gl);-webkit-backdrop-filter:blur(22px) saturate(170%);backdrop-filter:blur(22px) saturate(170%);border:1px solid var(--gb);box-shadow:0 10px 32px rgba(20,20,70,.2),inset 0 1px 0 rgba(255,255,255,.55)}
+.srch{display:flex;align-items:center;gap:8px;border:1px solid var(--gb);border-radius:999px;padding:8px 14px;margin:12px 0;color:var(--mu)}
+.srch input{flex:1;min-width:0;border:0;background:transparent;color:var(--tx);font:inherit;outline:0}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+label{display:block;font-size:13px;color:var(--mu);margin:8px 0 4px}
+select,textarea{width:100%;padding:10px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit}
+.btn{padding:11px 16px;border:0;border-radius:10px;background:var(--ac);color:#fff;font:inherit;font-weight:600;width:100%;margin-top:10px}
+.btn.s{background:var(--ac2);color:var(--ac);width:auto;margin:0;padding:8px 12px;font-size:14px}
+.btn:disabled{opacity:.5}
+.chat{display:flex;flex-direction:column;gap:8px;max-height:52vh;overflow-y:auto;padding:4px 0}
+.m{padding:9px 12px;border-radius:14px;max-width:85%;white-space:pre-wrap}
+.m.me{align-self:flex-start;background:var(--me);color:var(--mt)}
+.m.cl{align-self:flex-end;background:var(--ac2);color:var(--tx);border:1px solid var(--bd)}
+.m.hint{align-self:stretch;max-width:100%;background:transparent;border:1px dashed var(--ac);font-size:14px}
+.row{display:flex;gap:8px;align-items:flex-end;margin-top:8px}
+.row textarea{flex:1;min-height:46px;max-height:110px}
+.bar{height:8px;background:var(--bd);border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ac)}
+.sk{margin:8px 0;font-size:14px}
+.sk div.t{display:flex;justify-content:space-between}
+.tag{display:inline-block;background:var(--ac2);color:var(--ac);border-radius:8px;padding:2px 8px;font-size:12px;margin:2px}
+.mu{color:var(--mu);font-size:13px}
+.bad{color:var(--bad)}
+.hide{display:none}
+ul{padding-inline-start:20px;margin:6px 0}
+
+.lg{color:#fff}.lg svg,.av svg,.btn svg,.srch svg{stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.lg svg{width:25px;height:25px;stroke:#fff}.srch svg{width:20px;height:20px;flex:none}.srch{background:var(--card);border-color:var(--bd)}
+.chip{margin-inline-start:auto;background:var(--ac2);color:var(--ac);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700;white-space:nowrap}
+.tabs{position:fixed;z-index:20;left:50%;transform:translateX(-50%);bottom:calc(10px + env(safe-area-inset-bottom,0px));width:min(94vw,520px);display:flex;align-items:flex-end;border-radius:28px;padding:8px 6px 6px}
+.tabs button{flex:1;border:0;background:transparent;color:var(--mu);font:inherit;font-size:11.5px;line-height:1.2;display:flex;flex-direction:column;align-items:center;gap:3px;padding:0;min-height:54px;justify-content:flex-end}
+.tabs .ic{width:46px;height:30px;border-radius:15px;display:grid;place-items:center;transition:.2s}
+.tabs svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tabs button.on{color:var(--ac);font-weight:700}.tabs button.on .ic{background:var(--ac2)}.tabs button.on svg{fill:currentColor;fill-opacity:.15}
+.tabs .cta .ic{width:58px;height:58px;border-radius:50%;background:#0f6e56;color:#fff;margin-top:-30px;border:4px solid var(--bg);box-shadow:0 8px 20px rgba(15,110,86,.45)}
+.tabs .cta svg,.tabs .cta.on svg{width:26px;height:26px;stroke:#fff;fill:none}.tabs .cta.on .ic{background:#0f6e56}
+.btn{display:inline-flex;align-items:center;justify-content:center}.btn svg{width:18px;height:18px;margin-inline-end:6px}.btn.s svg{margin-inline-end:4px}.fl svg{transform:scaleX(-1)}
+.btn.endc{background:#c0392b;color:#fff}
+.seg{display:flex;gap:6px}.seg button{flex:1;padding:9px 4px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit;font-size:14px}.seg .on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.ch{display:flex;align-items:center;gap:10px}.av{width:46px;height:46px;border-radius:50%;background:var(--ac2);color:var(--ac);display:grid;place-items:center;flex:none}.av svg{width:25px;height:25px}
+.tm{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ac);direction:ltr}
+.ring{width:96px;height:96px;border-radius:50%;background:conic-gradient(var(--rc,var(--ac)) calc(var(--v)*1%),var(--bd) 0);display:grid;place-items:center;margin:6px auto 10px}.ring span{width:76px;height:76px;border-radius:50%;background:var(--card);display:grid;place-items:center;font-size:26px;font-weight:800}
+.row{flex-wrap:wrap}.vp{display:flex;flex-direction:column;align-items:center;gap:8px;padding:10px 0;border-bottom:1px dashed var(--bd);margin-bottom:8px}
+.orb{width:84px;height:84px;border-radius:50%;background:var(--ac2);color:var(--ac);display:grid;place-items:center;transition:.2s}.orb svg{width:34px;height:34px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round}
+.orb.l{background:#0f6e56;color:#fff;animation:pl 1.2s infinite}.orb.s{background:#2b6cb0;color:#fff;animation:pl 1.2s infinite}@keyframes pl{50%{transform:scale(1.1)}}
+#st,.ed input{width:100%;padding:10px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit}.ed{display:grid;gap:6px;margin:8px 0;padding-bottom:8px;border-bottom:1px dashed var(--bd)}
+details.acc{background:var(--card);border:1px solid var(--bd);border-radius:16px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.05);overflow:hidden}
+details.acc>summary{list-style:none;display:flex;align-items:center;gap:10px;padding:13px 14px;font-weight:700;cursor:pointer}
+details.acc>summary::-webkit-details-marker{display:none}
+.si{width:34px;height:34px;border-radius:10px;background:var(--ac2);color:var(--ac);display:grid;place-items:center;flex:none;font-size:14px}
+.si svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.st{flex:1;min-width:0}.ch2{width:18px;height:18px;stroke:var(--mu);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;transition:.2s}
+details[open]>summary .ch2{transform:rotate(180deg)}
+.ab{padding:12px 14px 14px;border-top:1px solid var(--bd)}.ab .card{box-shadow:none;background:var(--bg)}.ab details.acc{background:var(--bg);box-shadow:none}
+.chd{display:flex;align-items:center;gap:8px;position:sticky;top:env(safe-area-inset-top,0px);z-index:15;background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:8px 10px;margin-bottom:8px}.chd .av{width:40px;height:40px}.chd .tag{font-size:11px;margin:1px}.chd .btn.s{padding:8px 12px}
+.ib{width:38px;height:38px;border-radius:12px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);display:grid;place-items:center;flex:none;padding:0}.ib svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.tl{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.chp{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid var(--bd);border-radius:999px;background:var(--card);color:var(--tx);font:inherit;font-size:13px}.chp.on{background:var(--ac2);color:var(--ac);border-color:var(--ac)}.chp svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tp{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:10px 12px;margin-bottom:8px;font-size:14px;max-height:36vh;overflow:auto}
+#call .chat{height:calc(100dvh - 300px);min-height:220px;max-height:none;background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:10px}
+.m{font-size:15px;line-height:1.7}.m.me{background:linear-gradient(135deg,#0f6e56,#16906f)}
+.cmp{position:sticky;bottom:0;background:var(--bg);padding-top:8px}
+.cr{display:flex;gap:8px;align-items:flex-end}.cr textarea{flex:1;min-height:46px;max-height:110px;border-radius:23px;padding:12px 16px}
+.rb{width:46px;height:46px;border-radius:50%;border:1px solid var(--bd);background:var(--card);color:var(--tx);display:grid;place-items:center;padding:0;flex:none}.rb svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.rb.pr{background:var(--ac);color:#fff;border-color:var(--ac)}
+.co{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:8px;padding-bottom:6px}.co label{margin:0;display:flex;gap:6px;align-items:center;font-size:12.5px}
+.vp{flex-direction:row;justify-content:center;gap:12px;padding:6px 0;border:0;margin:0}.orb{width:52px;height:52px}.orb svg{width:26px;height:26px}
+body:has(#v1:not(.hide) #call:not(.hide)) .tabs{display:none}body:has(#v1:not(.hide) #call:not(.hide)) .wrap{padding-bottom:12px}
+.hide{display:none!important}
+
+.gear{margin-inline-start:6px;background:var(--card);border:1px solid var(--bd);color:var(--tx);width:38px;height:38px;border-radius:12px;display:grid;place-items:center;flex:none;padding:0}
+.gear svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#setm{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:16px}
+#setm.hide{display:none}
+#setm .sbox{width:100%;max-width:420px;margin:0}
+#gk{width:100%;padding:10px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit}
+</style>
+</head>
+<body>
+<div id="setm" class="hide"><div class="sbox card">
+<b>إعدادات جيمناي</b>
+<label for="gk">مفتاح Gemini API</label>
+<input id="gk" type="password" dir="ltr" autocomplete="off" placeholder="AIza...">
+<label for="gm">الموديل</label>
+<select id="gm"></select>
+<button class="btn" id="gsave">حفظ واختبار المفتاح</button>
+<div class="mu" id="gst" style="margin-top:8px"></div>
+<div class="mu" style="margin-top:6px">المفتاح بيتخزن على جهازك بس ومبيتبعتش غير لجوجل. تجيب مفتاح مجاني من aistudio.google.com/apikey</div>
+<button class="btn s" id="gclose" style="margin-top:10px">إغلاق</button>
+</div></div>
+<div class="wrap">
+<div class="hd"><div class="lg"><svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2" y="14" width="4" height="6" rx="2"/><rect x="18" y="14" width="4" height="6" rx="2"/><path d="M20 20a4 4 0 0 1-4 2h-2"/></svg></div><div><h1>مدرّب السيلز</h1><div class="mu">التسويق الرقمي السعودي</div></div><div class="chip" id="lvl"></div><button class="gear" id="gear" aria-label="الإعدادات"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></div>
+<div class="tabs">
+<button id="t4" class="on"></button><button id="t5"></button><button id="t1" class="cta"></button><button id="t2"></button><button id="t3"></button>
+</div>
+
+<div id="v1" class="hide">
+ <div id="setup" class="card">
+  <div class="mu">كل مكالمة بتتولّد من جديد حسب نقاط ضعفك. الأسعار مؤقتة.</div>
+  <label>نوع التدريب</label><select id="mode"><option value="help">بمساعدة (ورقة الخدمات + زر ساعدني)</option><option value="free">حر (من غير أي مساعدة)</option></select><label>الصعوبة</label>
+  <div class="seg" id="seg"></div><select id="diff" class="hide"><option value="auto">تلقائي (حسب مستواك)</option><option>سهل</option><option>متوسط</option><option>صعب</option></select>
+  <button class="btn" id="go">ابدأ مكالمة جديدة</button>
+ </div>
+ <div id="call" class="hide">
+  <div class="chd"><button class="ib" id="bk" aria-label="خروج"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><div class="av"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div><div id="scn" style="flex:1;min-width:0"></div><div class="tm" id="tm">00:00</div><button class="btn s endc" id="end"></button></div>
+  <div id="tools" class="tl"><button class="chp" id="tb1"></button><button class="chp" id="tb2"></button><button class="chp" id="hint">ساعدني</button></div>
+  <div id="tp" class="tp hide"><div id="cheat"><ul id="chl"></ul></div><div id="scrd" class="hide"><div id="scrl"></div></div></div>
+  <div class="chat" id="chat"></div>
+  <div class="cmp">
+   <div id="vp" class="vp hide"><div class="orb" id="orb"></div><div id="vs" class="mu"></div></div>
+   <div class="cr"><textarea id="inp" rows="1" placeholder="اتكلم مع العميل..."></textarea><button class="rb" id="mic" aria-label="تسجيل صوت"></button><button class="rb pr" id="snd" aria-label="إرسال"></button></div>
+   <div class="co"><button class="chp" id="vm"></button><label><input type="checkbox" id="tts"> أسمع العميل</label><label><input type="checkbox" id="chk" checked> نبّهني لو غلطت</label></div>
+  </div>
+ </div>
+ <div id="res" class="card hide"></div>
+</div>
+
+<div id="v4"><div class="card" data-ac="info" data-open="1"><b>ابدأ من هنا</b><div class="mu">دروس قصيرة (أساسيات + معلومات حقيقية عن السوق السعودي) تفهم بيها المجال والخدمات والمكالمة، وبعد كل درس اختبار سريع. بعدها تدخل التدريب وإنت عارف بتتكلم في إيه.</div><div class="mu" id="stat"></div><div class="bar" style="margin-top:8px"><i id="lpb" style="width:0"></i></div></div><div class="srch"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="sq" placeholder="ابحث في الدروس"></div><div id="les"></div></div>
+<div id="v5" class="hide"><div class="card" data-ac="cal"><b>خطة مذاكرة 7 أيام</b><div class="mu">بتتبني على مستواك ونقاط ضعفك، وتقدر تعملها تاني كل ما مستواك يتغيّر.</div><button class="btn" id="mkp">اعمل لي خطة</button><div id="plan" style="margin-top:8px"></div></div><div class="card" data-ac="check"><b>امتحان شامل</b><div class="mu">8 أسئلة: معرفة ومواقف واقعية. جديد كل مرة.</div><button class="btn" id="mke">ابدأ الامتحان</button><div id="exam"></div><div id="exh" class="mu"></div></div></div>
+<div id="v2" class="hide"><div id="prof"></div></div>
+
+<div id="v3" class="hide">
+ <div class="card" data-ac="tag"><b>الخدمات والأسعار (قابلة للتعديل)</b><div class="mu">أي تعديل هنا بيتطبق على ورقة المكالمة والعميل والتقييم والامتحان.</div><div id="svcl"></div><button class="btn s" id="svca">+ خدمة</button> <button class="btn s" id="svcr">رجّع الافتراضي</button></div><div class="card" data-ac="msg"><b>سكربتات الافتتاحية</b><div class="mu">عدّل أي سكربت أو ضيف سكربتك الخاص. بتظهر في شاشة المكالمة وتدوس عليها تتحط في خانة الكلام. استبدل الأقواس [ ] باسمك واسم الشركة.</div><div id="scl"></div><label>سكربت جديد / تعديل</label><input id="st" placeholder="اسم السكربت"><textarea id="sb" rows="3" placeholder="نص الافتتاحية..." style="margin-top:6px"></textarea><button class="btn" id="ssv">إضافة سكربت</button></div>
+ <div class="card" data-ac="type"><b>مصطلحات</b><ul>
+ <li>ROI: العائد على كل ريال اتصرف</li>
+ <li>حملة: إعلان بيشتغل لفترة وهدف محدد</li>
+ <li>تحويل: زائر بقى عميل أو اشترى</li>
+ <li>سيو: ظهور الموقع في نتائج البحث من غير دفع</li></ul></div>
+ <div class="card" data-ac="globe"><b>لهجة سعودية</b><ul>
+ <li>أبشر = حاضر</li><li>وش تبغى = عايز إيه</li><li>الحين = دلوقتي</li><li>ما يخالف = مفيش مشكلة</li><li>طال عمرك = احترام للمتحدث</li></ul></div>
+ <div class="card" data-ac="shield"><b>اعتراضات شائعة</b><div class="mu">اكتب أي اعتراض قابلته وولّد له ردود مختلفة كل مرة، أو احفظ ردك بنفسك. اللي تحفظه بيدخل في مكالمات التدريب.</div><label>الاعتراض</label><textarea id="oq" rows="2" placeholder="مثال: أسعاركم أعلى من غيركم"></textarea><textarea id="oa" rows="2" placeholder="ردك (اختياري)" style="margin-top:6px"></textarea><button class="btn" id="og">ولّد ردود مختلفة</button><button class="btn s" id="os" style="margin-top:8px">احفظ في القايمة</button><div id="oqr"></div><div id="objl" style="margin-top:10px"></div></div>
+</div>
+</div>
+
+<script>
+var SK={opening:"الافتتاحية",discovery:"اكتشاف الاحتياج",objection:"الرد على الاعتراض",closing:"الإغلاق",knowledge:"معرفة المجال",language:"اللهجة والأسلوب"};
+var BIZ=["مطعم","كافيه","متجر على سلة","متجر على زد","عيادة أسنان","صالون نسائي","محل عطور","مكتب عقارات","معرض سيارات","مركز تدريب"];
+var PERS=["متعاون ومتحمس","متردد ويسأل كثير","مستعجل ومشغول","عنيد ومتشكك","مجامل لكن ما يلتزم","يقارن الأسعار"];
+var OBJ=["السعر غالي","جربت وكالة قبلك وما نفعت","خلني أفكر وأرجع لك","أنا أسوي إعلانات بنفسي","وش الضمان إن المبيعات تزيد؟","ما عندي ميزانية الحين"];
+var FOCUS={opening:"يقاطع الافتتاحية ويستعجل: وش تبغى؟",discovery:"ما يذكر احتياجه إلا لو انسأل سؤال صح",objection:"",closing:"يتهرب من اتخاذ القرار ويأجّل",knowledge:"يسأل أسئلة محددة عن الخدمات والأرقام",language:"يستغرب أي كلمة أو أسلوب مصري"};
+var PRICES="إدارة حسابات سوشيال 1500 ريال شهريًا؛ إعلانات ممولة 2000 ريال شهريًا غير ميزانية الإعلان؛ تصميم هوية 1200 ريال؛ متجر سلة أو زد 3500 ريال؛ سيو 1800 ريال شهريًا؛ محتوى 8 فيديوهات 2500 ريال شهريًا.";
+var P={sessions:0,skills:{},weak:[],strong:[],mistakes:[]};
+var db=null,sample=null,dict=null,hist=[],scen=null,busy=false;
+var $=function(i){return document.getElementById(i)};
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function tab(n){for(var i=1;i<=5;i++){$("v"+i).classList.toggle("hide",i!==n);$("t"+i).classList.toggle("on",i===n)}window.scrollTo(0,0);updHd();if(n===2)renderProf();if(n===5)renderPlan()}
+[1,2,3,4,5].forEach(function(n){$("t"+n).onclick=function(){tab(n)}});
+
+
+/* ===== Gemini (بديل كلود) ===== */
+var GURL="https://generativelanguage.googleapis.com/v1beta/";
+function gl(k){try{return localStorage.getItem(k)||""}catch(e){return ""}}
+function gs(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function errMsg(e){var m=(e&&e.message)||"";
+ if(m==="nokey")return "حط مفتاح جيمناي الأول من زرار الإعدادات";
+ if(/API key|API_KEY|PERMISSION|403|401/i.test(m))return "المفتاح مش شغال، راجعه من الإعدادات";
+ if(/quota|429|RESOURCE_EXHAUSTED/i.test(m))return "وصلت للحد المجاني، استنى شوية وجرّب";
+ if(/not found|404|not supported/i.test(m))return "الموديل مش متاح، غيّره من الإعدادات";
+ if(/Failed to fetch|NetworkError|Load failed/i.test(m))return "مفيش اتصال بالإنترنت";
+ return m.slice(0,120)||"جرّب تاني"}
+async function gcall(contents,json){
+ var k=gl("gemini_key"),m=gl("gemini_model")||"gemini-flash-latest";
+ if(!k){openSet();throw new Error("nokey")}
+ var body={contents:contents,generationConfig:{temperature:1}};
+ if(json)body.generationConfig.responseMimeType="application/json";
+ var r=await fetch(GURL+"models/"+encodeURIComponent(m)+":generateContent",{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":k},body:JSON.stringify(body)});
+ var d={};try{d=await r.json()}catch(e){}
+ if(!r.ok)throw new Error((d.error&&d.error.message)||("HTTP "+r.status));
+ var c=d.candidates&&d.candidates[0],ps=(c&&c.content&&c.content.parts)||[];
+ var t=ps.filter(function(p){return !p.thought}).map(function(p){return p.text||""}).join("");
+ if(!t)throw new Error("الرد جاء فاضي، جرّب تاني");
+ return t}
+function mkSample(){
+ var f=async function(m,o){
+  var c=typeof m==="string"?[{role:"user",parts:[{text:m}]}]:m.map(function(x){return {role:x.role==="assistant"?"model":"user",parts:[{text:x.content}]}});
+  var t=await gcall(c,false);
+  if(o&&o.onText){try{o.onText({text:t})}catch(e){}}
+  return {text:t}};
+ f.json=async function(p,o){
+  var t=await gcall([{role:"user",parts:[{text:p}]}],true);
+  t=t.replace(/^\s*```(?:json)?/i,"").replace(/```\s*$/,"").trim();
+  return JSON.parse(t)};
+ return f}
+async function loadModels(k){
+ var r=await fetch(GURL+"models?pageSize=200",{headers:{"x-goog-api-key":k}});
+ var d={};try{d=await r.json()}catch(e){}
+ if(!r.ok)throw new Error((d.error&&d.error.message)||("HTTP "+r.status));
+ return (d.models||[]).filter(function(m){return (m.supportedGenerationMethods||[]).indexOf("generateContent")>-1})
+  .map(function(m){return m.name.replace("models/","")})
+  .filter(function(n){return /^gemini-/.test(n)&&!/(image|tts|live|embedding|audio|robotics|computer|learnlm|vision)/.test(n)})}
+function pickBest(l){
+ function sc(n){var v=parseFloat((n.match(/gemini-(\d+(?:\.\d+)?)/)||[0,0])[1]);
+  return (n==="gemini-flash-latest"?2000:0)+(/flash/.test(n)?1000:0)-(/lite|8b|pro/.test(n)?500:0)-(/preview|exp/.test(n)?100:0)+v}
+ return l.slice().sort(function(a,b){return sc(b)-sc(a)})[0]}
+function fillModels(list,cur){
+ var s=$("gm");s.innerHTML="";
+ var l=list.slice();if(cur&&l.indexOf(cur)<0)l.unshift(cur);
+ l.forEach(function(n){var o=document.createElement("option");o.value=n;o.textContent=n;if(n===cur)o.selected=true;s.appendChild(o)})}
+function openSet(){
+ $("gk").value=gl("gemini_key");
+ var l=[];try{l=JSON.parse(gl("gemini_models")||"[]")}catch(e){}
+ fillModels(l,gl("gemini_model")||"gemini-flash-latest");
+ $("gst").textContent=gl("gemini_key")?"":"الصق المفتاح واضغط حفظ.";
+ $("setm").classList.remove("hide")}
+$("gear").onclick=openSet;
+$("gclose").onclick=function(){$("setm").classList.add("hide")};
+$("gm").onchange=function(){gs("gemini_model",$("gm").value)};
+$("gsave").onclick=async function(){
+ var k=$("gk").value.trim();if(!k){$("gst").textContent="اكتب المفتاح الأول.";return}
+ $("gst").textContent="بختبر المفتاح...";$("gsave").disabled=true;
+ try{
+  var l=await loadModels(k);if(!l.length)throw new Error("مفيش موديلات متاحة للمفتاح ده");
+  var cur=gl("gemini_model");if(l.indexOf(cur)<0)cur=pickBest(l);
+  gs("gemini_key",k);gs("gemini_model",cur);gs("gemini_models",JSON.stringify(l));
+  fillModels(l,cur);$("gst").textContent="تمام، المفتاح شغال. الموديل: "+cur;
+ }catch(e){$("gst").textContent="فشل: "+errMsg(e)}
+ $("gsave").disabled=false};
+
+async function init(){
+ sample=mkSample();
+ dict=null;
+ if(!dict)$("mic").classList.add("hide");
+ if(!sample){$("go").disabled=true;$("go").textContent="المحاكي غير متاح في هذا العرض"}
+ db=null;try{if(!localStorage.getItem("gemini_key"))setTimeout(openSet,500)}catch(e){}
+ try{if(!db){var l=localStorage.getItem("trainer");if(l)P=Object.assign(P,JSON.parse(l))}}catch(e){}
+}
+async function save(){
+ updHd();
+ try{if(db)await db.doc("trainer/profile").set(P);else localStorage.setItem("trainer",JSON.stringify(P))}catch(e){}
+}
+function avg(){var v=Object.values(P.skills);return v.length?v.reduce(function(a,b){return a+b},0)/v.length:null}
+function weakest(){var k=Object.keys(P.skills);if(!k.length)return null;k.sort(function(a,b){return P.skills[a]-P.skills[b]});return k[0]}
+
+function buildScenario(){
+ var d=$("diff").value,a=avg();
+ if(d==="auto")d=a===null||a<55?"سهل":a<75?"متوسط":"صعب";
+ var w=weakest(),f;
+ if(w&&Math.random()<0.7)f=w;else f=pick(Object.keys(FOCUS));
+ var o=f==="objection"||Math.random()<0.5?pick(OBJ):"";
+ var fx=FOCUS[f]||"";
+ return {biz:pick(BIZ),pers:pick(PERS),diff:d,obj:o,focus:f,fx:fx,seed:Math.floor(Math.random()*9999)};
+}
+function sysPrompt(s){
+ return "أنت تلعب دور صاحب نشاط سعودي ("+s.biz+") يتلقى مكالمة من مندوب مبيعات خدمات تسويق رقمي. تكلم بلهجة سعودية بيضاء طبيعية وبردود قصيرة (جملة إلى ثلاث). شخصيتك: "+s.pers+". مستوى الصعوبة: "+s.diff+". "+(s.obj?"في لحظة مناسبة من المكالمة اطرح هذا الاعتراض: «"+s.obj+"». ":"")+(s.fx?"سلوك خاص: "+s.fx+". ":"")+"المندوب مصري ومبتدئ ولا يعرف المجال؛ لا تساعده ولا تشرح له، وتصرّف كعميل حقيقي: إذا قال معلومة خاطئة أو أتى بكلمات غير مفهومة أبدِ استغرابك. لا تقبل الشراء بسهولة إلا لو أقنعك فعلًا. الأسعار المتاحة: "+PRICES+" رقم الجلسة "+s.seed+". لا تخرج من الدور ولا تكتب أي شيء غير كلام العميل.";
+}
+function add(cls,t){var d=document.createElement("div");d.className="m "+cls;d.textContent=t;$("chat").appendChild(d);$("chat").scrollTop=1e9;return d}
+function msgs(){
+ var out=hist.map(function(h,i){return {role:h.r,content:(i===0?sysPrompt(scen)+"\n\nالمندوب: ":"")+h.t}});
+ return out;
+}
+$("go").onclick=function(){
+ scen=buildScenario();startT();hist=[];$("chat").innerHTML="";$("res").classList.add("hide");var fm=$("mode").value==="free";$("cheat").classList.toggle("hide",fm);$("scrd").classList.toggle("hide",fm);$("hint").classList.toggle("hide",fm);$("cheat").open=false;$("tools").classList.toggle("hide",fm);$("tp").classList.add("hide");$("tb1").classList.remove("on");$("tb2").classList.remove("on");$("bk").dataset.c="";
+ $("scn").innerHTML="<span class='tag'>"+esc(scen.biz)+"</span><span class='tag'>"+esc(scen.pers)+"</span><span class='tag'>الصعوبة: "+esc(scen.diff)+"</span>"+(P.sessions?"<span class='tag'>مبني على ملفك</span>":"");
+ $("setup").classList.add("hide");$("call").classList.remove("hide");
+ add("hint","المكالمة بدأت. ابدأ بالسلام والتعريف بنفسك وشركتك.");
+};
+async function send(){
+ var t=$("inp").value.trim();if(!t||busy||!sample)return;
+ $("inp").value="";var me=add("me",t);var pre=hist.slice();hist.push({r:"user",t:t});busy=true;check(me,pre,t);
+ var el=add("cl","...");
+ try{
+  var r=await sample(msgs(),{cache:false,onText:function(u){el.textContent=u.text||"..."},modelTier:"default"});
+  el.textContent=r.text;hist.push({r:"assistant",t:r.text});
+  speak(r.text);
+ }catch(e){el.textContent="حصل خطأ: "+errMsg(e);hist.pop();$("chat").lastChild.classList.add("bad");if(VM)vstat("حصل خطأ، اتكلم تاني","l")}
+ busy=false;
+}
+$("snd").onclick=send;
+async function check(me,pre,t){
+ if(!$("chk").checked||!sample)return;
+ try{
+  var tr=pre.map(function(h){return (h.r==="user"?"المندوب: ":"العميل: ")+h.t}).join("\n");
+  var j=await sample.json("أنت مدرب مبيعات. مندوب مصري مبتدئ يتدرب على مكالمة مع عميل سعودي لخدمات تسويق رقمي. الخدمات والأسعار الصحيحة: "+PRICES+"\nالمكالمة حتى الآن:\n"+tr+"\nرد المندوب الأخير: «"+t+"»\nهل فيه خطأ واضح؟ (معلومة خاطئة عن الخدمات أو الأسعار، كلمات مصرية غير مفهومة للسعودي، إلحاح أو قلة أدب، ذكر السعر قبل فهم الاحتياج، وعد مبالغ فيه، استسلام مبكر). لا تنبّه لو الرد مقبول حتى لو مش مثالي. أرجع JSON فقط: {\"ok\":true أو false,\"issue\":\"سطر بالمصري يشرح الغلط\",\"better\":\"الأحسن بجملة سعودية\"}",{cache:false,modelTier:"quick"});
+  if(j&&j.ok===false&&j.issue){var w=document.createElement("div");w.className="m hint";w.textContent="⚠️ "+j.issue+(j.better?" | الأحسن: "+j.better:"");me.insertAdjacentElement("afterend",w);$("chat").scrollTop=1e9}
+ }catch(e){}
+}
+$("hint").onclick=async function(){
+ if(!hist.length||busy||!sample){add("hint","ابدأ بجملة الأول وبعدها اطلب المساعدة.");return}
+ var el=add("hint","بفكر...");busy=true;
+ try{
+  var tr=hist.map(function(h){return (h.r==="user"?"المندوب: ":"العميل: ")+h.t}).join("\n");
+  var r=await sample("المندوب مصري مبتدئ في مبيعات التسويق الرقمي السعودي. هذه المكالمة حتى الآن:\n"+tr+"\n\nاقترح عليه الرد التالي بجملة بلهجة سعودية بسيطة، ثم اشرح له بالعامية المصرية في سطرين ليه ده الرد المناسب، وأي مصطلح فيه يتعلمه. بدون مقدمات.",{cache:false,modelTier:"quick"});
+  el.textContent=r.text;
+ }catch(e){el.textContent="مش قادر أساعد دلوقتي."}
+ busy=false;
+};
+$("end").onclick=async function(){
+ if(hist.length<2){add("hint","لازم تتكلم مع العميل الأول قبل التقييم.");return}if(busy||!sample){return}
+ busy=true;stopT();if(VM)$("vm").click();$("end").disabled=true;
+ var tr=hist.map(function(h){return (h.r==="user"?"المندوب: ":"العميل: ")+h.t}).join("\n");
+ var res=$("res");res.classList.remove("hide");res.textContent="بقيّم المكالمة...";res.scrollIntoView();
+ try{
+  var j=await sample.json("قيّم أداء مندوب مبيعات مصري مبتدئ في مكالمة مع عميل سعودي لخدمات التسويق الرقمي. المكالمة:\n"+tr+"\n\nأرجع JSON فقط بالشكل: {\"scores\":{\"opening\":0-100,\"discovery\":0-100,\"objection\":0-100,\"closing\":0-100,\"knowledge\":0-100,\"language\":0-100},\"strengths\":[\"نقطتان قصيرتان\"],\"weaknesses\":[\"نقطتان قصيرتان\"],\"mistakes\":[{\"said\":\"ما قاله المندوب\",\"better\":\"الأفضل بلهجة سعودية\"}],\"summary\":\"سطران\"}. اكتب الشرح بالعامية المصرية، وكن صادقًا وحاسمًا في التقييم، وإن لم تظهر مهارة في المكالمة (مثلًا لم يحدث اعتراض) أعطها null.",{cache:false,modelTier:"default"});
+  P.sessions=(P.sessions||0)+1;
+  Object.keys(SK).forEach(function(k){var s=j.scores&&j.scores[k];if(typeof s==="number"){var o=P.skills[k];P.skills[k]=o==null?Math.round(s):Math.round(o*0.6+s*0.4)}});
+  P.strong=(j.strengths||[]).concat(P.strong||[]).slice(0,6);
+  P.weak=(j.weaknesses||[]).concat(P.weak||[]).slice(0,6);
+  P.mistakes=(j.mistakes||[]).concat(P.mistakes||[]).slice(0,8);
+  await save();
+  var vs=Object.keys(SK).map(function(k){return j.scores&&j.scores[k]}).filter(function(x){return typeof x==="number"});var ov=vs.length?Math.round(vs.reduce(function(a,b){return a+b},0)/vs.length):0;var h=ring(ov)+"<b>تقييم المكالمة</b><p>"+esc(j.summary||"")+"</p>";
+  var bs="";Object.keys(SK).forEach(function(k){var s=j.scores&&j.scores[k];if(typeof s==="number")bs+=bar(SK[k],s)});h+=A("المهارات","bars",bs,1);
+  h+=A("قوتك","star","<ul>"+(j.strengths||[]).map(function(x){return "<li>"+esc(x)+"</li>"}).join("")+"</ul>",1);
+  h+=A("ضعفك","target","<ul>"+(j.weaknesses||[]).map(function(x){return "<li>"+esc(x)+"</li>"}).join("")+"</ul>",1);
+  if((j.mistakes||[]).length)h+=A("جمل تتحسّن","edit","<ul>"+j.mistakes.map(function(m){return "<li>قلت: "+esc(m.said)+"<br>الأحسن: <b>"+esc(m.better)+"</b></li>"}).join("")+"</ul>",1);
+  h+="<div class='mu'>الأداة سجّلت ده، والعميل الجاي هيركّز على أضعف نقطة عندك.</div><button class='btn' id='again'>مكالمة جديدة</button>";
+  res.innerHTML=h+"<button class='btn s' id='back' style='margin-top:8px'>تغيير الإعدادات</button>";$("back").onclick=function(){res.classList.add("hide");$("setup").classList.remove("hide")};setTimeout(function(){$("setup").classList.add("hide");$("call").classList.add("hide");res.scrollIntoView()},0);
+  $("again").onclick=function(){$("call").classList.add("hide");$("setup").classList.remove("hide");res.classList.add("hide");$("go").click()};
+  $("call").classList.add("hide");$("setup").classList.remove("hide");
+ }catch(e){res.textContent="التقييم فشل، جرّب إنهاء المكالمة تاني."}
+ busy=false;$("end").disabled=false;
+};
+function esc(s){var d=document.createElement("div");d.textContent=String(s==null?"":s);return d.innerHTML}
+function bar(n,v){return "<div class='sk'><div class='t'><span>"+n+"</span><span>"+v+"%</span></div><div class='bar'><i style='width:"+v+"%;background:"+col(v)+"'></i></div></div>"}
+function renderProf(){var p=$("prof");
+ if(!P.sessions){p.innerHTML="<div class='card mu'>لسه مفيش جلسات. بعد أول تقييم هيظهر هنا اللي الأداة اتعلمته عنك.</div>";return}
+ var bs="";Object.keys(SK).forEach(function(k){if(P.skills[k]!=null)bs+=bar(SK[k],P.skills[k])});
+ var w=weakest(),tg=function(a){return (a||[]).map(function(x){return "<span class='tag'>"+esc(x)+"</span>"}).join("")||"<span class='mu'>لسه</span>"};
+ p.innerHTML=A("مستواك العام ("+P.sessions+" جلسة)","trophy",ring(Math.round(avg()||0))+(w?"<p>العميل الجاي هيركّز على: <span class='tag'>"+SK[w]+"</span></p>":""),1)+A("المهارات","bars",bs,1)+A("نقاط قوتك","star",tg(P.strong))+A("نقاط ضعفك","target",tg(P.weak))+A("أخطاء بتتكرر","edit","<ul>"+(P.mistakes||[]).map(function(m){return "<li>قلت: "+esc(m.said)+"<br>الأحسن: <b>"+esc(m.better)+"</b></li>"}).join("")+"</ul>")}
+var micOn=false;
+$("mic").onclick=async function(){
+ if(!dict)return;
+ if(micOn){try{await dict.stop()}catch(e){}return}
+ var base=$("inp").value;
+ dict.onPartial(function(x){$("inp").value=(base?base+" ":"")+x.text});
+ dict.onFinal(function(x){base=(base?base+" ":"")+x.text;$("inp").value=base});
+ dict.onState(function(x){micOn=x.state==="listening";$("mic").innerHTML=micOn?IS.stop:IS.mic});
+ try{await dict.start()}catch(e){add("hint","المايك ماتفتحش: "+(e&&e.code==="not_granted"?"لازم تسمح للمايك.":"المتصفح أو التطبيق مش داعم الإملاء. جرّب كروم، أو زرار مكالمة صوتية."))}
+};
+var LES=[
+{t:'يعني إيه تسويق رقمي؟',b:'صاحب المحل بيدوّر على زباين جداد وبيبيع أكتر. التسويق الرقمي إنك توصّله لزباينه على الموبايل: سوشيال ميديا وإعلانات وموقع ومتجر. إنت مش بتبيع خدمة، إنت بتبيع نتيجة: مبيعات أكتر وحجوزات أكتر. وجملتك الأقوى: كام ريال بيرجعلك من كل ريال بتصرفه؟ (ده الـ ROI).'},
+{t:'إدارة حسابات السوشيال (1500/شهر)',b:'إنستجرام وتيك توك وسناب. بنصمم البوستات وننشر ونرد على الرسائل ونحلل النتايج. بتفيد العميل لأنه بيفضل ظاهر قدام الناس كل يوم من غير ما يشغل نفسه. المناسب لأي نشاط عنده حسابات مهملة.'},
+{t:'الإعلانات الممولة (2000/شهر + ميزانية)',b:'إعلان مدفوع بيظهر لناس معيّنة (مدينة وعمر واهتمام). الـ2000 أتعابنا، وميزانية الإعلان بتتدفع للمنصة (سناب وتيك توك وجوجل وميتا) ومتحسبة بره الأتعاب. بتفيد العميل لأنها أسرع طريق لزباين جداد. نقطة مهمة: وضّح للعميل الفرق بين أتعابنا وميزانية الإعلان من الأول.'},
+{t:'متجر سلة/زد وتصميم الهوية',b:'سلة وزد منصتين سعوديتين بيفتحوا لك متجر إلكتروني جاهز بالدفع والشحن (3500 مرة واحدة). الهوية (1200): لوجو وألوان وشكل موحّد بيخلي النشاط شكله محترم. بتفيد العميل اللي لسه بيبيع بالواتساب أو من غير هوية واضحة.'},
+{t:'السيو والمحتوى',b:'السيو (1800/شهر): نحسّن موقع العميل عشان يظهر أول نتايج جوجل لما حد يدوّر على نشاطه، من غير ما يدفع لكل ضغطة. نتيجته بطيئة لكن بتفضل. المحتوى (2500/شهر): فيديوهات قصيرة بتعرّف الناس بالنشاط. العميل لازم يعرف إن السيو استثمار مش نتيجة في أسبوع.'},
+{t:'فن المكالمة والتعامل السعودي',b:'1) افتتاحية: سلام، اسمك، شركتك، ليه بتتصل في جملة واحدة. 2) اكتشاف الاحتياج: اسأل قبل ما تعرض (وش أكبر تحدي في المبيعات؟). 3) اعتراض السعر: ارجع للنتيجة مش للرقم. 4) الإغلاق: اطلب خطوة واضحة (اجتماع أو عرض). أدب: ابدأ بالسلام والسؤال عن الحال، قول طال عمرك وأبشر، ما تستعجل ولا تلح. وانتبه: ما تتكلم بمصري زيادة.'},
+{t:'السوق السعودي: الناس بتقعد فين؟',b:'السعودية سوق «تيك توك وسناب» بقدر ما هي سوق إنستجرام. سناب بيوصل لحوالي 75% من البالغين وحوالي 90% ممن عمرهم 13 لـ 34 سنة، والمحتوى العربي بيجيب تفاعل أعلى من المترجم بنسبة 35 لـ 50% حسب تقرير Kolsquare. وتيك توك شوب شغال في السعودية، وحوالي 60% من مستخدمي تيك توك اشتروا من التطبيق لحد بداية 2025. وعدد «هويات» مستخدمي السوشيال أكبر من عدد السكان (44.8 مليون في أكتوبر 2026 حسب DataReportal) لأن الشخص الواحد ممكن يبقى عنده أكتر من حساب. جملتك للعميل: «زباينك على سناب وتيك توك كل يوم، وأنت مو موجود عندهم». <br><small class="mu">الأرقام بتختلف من مصدر لمصدر. المصادر: Kolsquare، DataReportal.</small>'},
+{t:'مواسم البيع في السعودية',b:'أهم المواسم: يوم التأسيس (22 فبراير)، رمضان والعيد، اليوم الوطني (23 سبتمبر)، والوايت فرايداي في نوفمبر. في 2024 زاد الإنفاق في يوم التأسيس 44% عن الأيام العادية حسب Think with Google، ونوفمبر كان أنشط شهر للتجارة الإلكترونية في دراسة Flowwow وAdmitad، و62% من المشتريات أونلاين بتتم من الموبايل. وفي رمضان، مسؤولين في السوق قالوا إن الموبايل أكتر من 90% من معاملات التجارة الإلكترونية والسوشيال كوميرس حوالي 30% (تصريحات وتقديرات). النصيحة: كلّم العميل قبل الموسم بأسابيع لأن التصميم والإعلان محتاجين وقت تجهيز. جملة مناسبة: «الموسم بعد كم أسبوع، تبغى نجهّز لك حملتك من الحين؟» <br><small class="mu">المصادر: Think with Google، Arab News.</small>'},
+{t:'الدفع في المتاجر السعودية',b:'العميل السعودي بيدفع غالبًا بمحفظة رقمية (آبل باي وSTC Pay) أو بطاقة مدى، وفي تقسيط عن طريق تابي وتمارا، والدفع عند الاستلام بيقل. النسب بتختلف حسب المصدر (مثلًا Worldpay: المحافظ الرقمية 40% ومدى 19% والكاش 8%، وCheckout.com: آبل باي 36% ومدى 22%)، لكن الاتجاه واحد. دروس البيع: أي متجر على سلة أو زد لازم يدعم مدى وآبل باي وSTC Pay وتابي أو تمارا، وإلا العميل ممكن يسيب العربة من غير ما يشتري. وده سبب تقنع بيه صاحب المتجر إن التجهيز الكامل مش رفاهية. <br><small class="mu">المصادر: Worldpay عبر Antom، Checkout.com.</small>'},
+{t:'قواعد الإعلان القانونية (مهم)',b:'في السعودية، أي فرد بينشر إعلانات على حسابه الشخصي لازم يبقى معاه ترخيص «موثوق» من هيئة تنظيم الإعلام. والمنتج المعلن عنه لازم يكون مرخّص، والأفضل إن المتجر الإلكتروني يكون مسجل في منصة «معروف». المقيمين غير السعوديين ليهم مسار مختلف ومايشتغلوش قبل الموافقة، وفي 2022 اتفرضت غرامة 400 ألف ريال على زائرة عربية خالفت القواعد. معناها ليك: لو العميل طلب مؤثرين، قوله «نتعامل مع مؤثرين معاهم ترخيص موثوق»، ومتوعدش بحاجة قبل ما تتأكد من الشركة. <br><small class="mu">القواعد والرسوم بتتغير، فراجع الجهات الرسمية. المصادر: Asharq Al-Awsat، Clyde & Co، Arab News، The National.</small>'},
+{t:'الثقة قبل الصفقة',b:'العلاقة الشخصية في السوق السعودي بتسبق الصفقة. التواصل غالبًا غير مباشر وفيه سلام ومجاملة وسؤال عن الحال قبل الشغل، والاستعجال بيضر. حسب الدليل التجاري الأمريكي، التواصل الأولي ممكن يتم إلكترونيًا، لكن مفيش التزام جدي من غير لقاء وجهًا لوجه. وكمان احترام الألقاب والصبر مهمين. تطبيقها في مكالمتك: ابدأ بالسلام والسؤال عن الحال، قول سبب اتصالك في جملة، اسأل قبل ما تعرض، واختم بموعد لقاء أو اجتماع بدل «اشترِ دلوقتي». وبلاش ضغط. <br><small class="mu">المصادر: trade.gov، British Council، CIBTvisas.</small>'}];
+function updStat(){P.done=P.done||[];$("lpb").style.width=Math.round(P.done.length/LES.length*100)+"%";$("stat").textContent="الدروس المكتملة: "+P.done.length+" من "+LES.length+(P.done.length<LES.length?" - يفضّل تخلصها قبل التدريب الحر":" - جاهز للتدريب الحر")}
+function renderLessons(){P.done=P.done||[];var h="",q=$("sq").value.trim();LES.forEach(function(L,i){if(q&&L.t.indexOf(q)<0)return;h+="<details class='acc' id='lc"+i+"'><summary><span class='si'>"+(i+1)+"</span><span class='st'>"+L.t+"</span><span id='ck"+i+"'>"+(P.done.indexOf(i)>=0?"✅":"")+"</span>"+CH+"</summary><div class='ab'><p style='margin-top:0'>"+L.b+"</p><button class='btn s' data-q='"+i+"'>اختبرني</button><div id='q"+i+"'></div></div></details>"});$("les").innerHTML=h;Array.prototype.forEach.call($("les").querySelectorAll("[data-q]"),function(b){b.onclick=function(){quiz(+b.getAttribute("data-q"))}});updStat()}
+function quiz(i){var box=$("q"+i);if(!sample){box.textContent="الاختبار غير متاح في هذا العرض";return}box.textContent="بجهّز الأسئلة...";
+ sample.json("اعمل 3 أسئلة اختيار من متعدد (4 اختيارات) تختبر فهم متدرب مبيعات مبتدئ للدرس التالي، وكل مرة أسئلة جديدة. الدرس: "+LES[i].t+" - "+LES[i].b+"\nأرجع JSON فقط: {\"questions\":[{\"q\":\"\",\"options\":[\"\",\"\",\"\",\"\"],\"answer\":0,\"why\":\"سطر بالمصري\"}]}. موقف عملي أفضل من حفظ.",{cache:false,modelTier:"quick"}).then(function(j){var qs=j.questions.slice(0,3),sc=0,n=0;box.innerHTML="";qs.forEach(function(q){var d=document.createElement("div");d.className="sk";var t=document.createElement("div");t.textContent=q.q;d.appendChild(t);q.options.forEach(function(o,k){var b=document.createElement("button");b.className="btn s";b.style.cssText="display:block;margin:4px 0;width:100%;text-align:start";b.textContent=o;b.onclick=function(){if(d.getAttribute("data-a"))return;d.setAttribute("data-a","1");n++;if(k===q.answer){sc++;b.style.background="var(--ac)";b.style.color="#fff"}else{b.classList.add("bad");var cb=d.querySelectorAll("button")[q.answer];if(cb){cb.style.background="var(--ac)";cb.style.color="#fff"}}var w=document.createElement("div");w.className="mu";w.textContent=(k===q.answer?"":"الصح: "+q.options[q.answer]+" - ")+q.why;d.appendChild(w);if(n===qs.length){var r=document.createElement("div");r.innerHTML="<b>نتيجتك "+sc+" من "+qs.length+(sc>=2?" - الدرس اتحسب ✅":" - ارجع للدرس وجرّب تاني")+"</b>";box.appendChild(r);if(sc>=2){P.done=P.done||[];if(P.done.indexOf(i)<0)P.done.push(i);$("ck"+i).textContent="✅";updStat();save()}}};d.appendChild(b)});box.appendChild(d)})}).catch(function(){box.textContent="الاختبار فشل، جرّب تاني."})}
+function ctx(){return 'مستوى المتدرب: دروس مكتملة '+(P.done||[]).length+' من '+LES.length+'؛ مهاراته: '+JSON.stringify(P.skills)+'؛ نقاط ضعفه: '+(P.weak||[]).join('، ')+'.'}
+async function mkPlan(){
+ var box=$('plan');box.textContent='بجهّز خطتك...';
+ try{var j=await sample.json('اعمل خطة مذاكرة 7 أيام لمندوب مصري مبتدئ يتعلم بيع خدمات تسويق رقمي للسوق السعودي. '+ctx()+' كل يوم 3 مهام قصيرة وعملية (مثل: اقرأ درس كذا، اعمل مكالمتين وركّز فيهم على كذا، اتعلم 5 كلمات سعودية). ركّز على نقاط ضعفه. بالمصري. JSON فقط: {"days":[{"title":"اليوم 1: ...","tasks":["","",""]}]}',{cache:false,modelTier:'default'});
+  P.plan={days:j.days.slice(0,7),ck:{}};await save();renderPlan()}catch(e){box.textContent='الخطة فشلت، جرّب تاني.'}}
+function renderPlan(){
+ var box=$('plan');renderExams();
+ if(!P.plan){box.textContent='لسه مفيش خطة.';return}
+ box.innerHTML='';
+ P.plan.days.forEach(function(d,i){var c=document.createElement('details');c.className='acc';var t=document.createElement('summary');t.innerHTML="<span class='si'>"+(i+1)+"</span><span class='st'></span>"+CH;t.querySelector('.st').textContent=d.title;var ab=document.createElement('div');ab.className='ab';c.appendChild(t);c.appendChild(ab);d.tasks.forEach(function(x,k){var l=document.createElement('label');l.style.cssText='display:flex;gap:8px;align-items:flex-start;color:var(--tx);font-size:14px';var cb=document.createElement('input');cb.type='checkbox';var key=i+'-'+k;cb.checked=!!P.plan.ck[key];cb.onchange=function(){P.plan.ck[key]=cb.checked;save()};var s=document.createElement('span');s.textContent=x;l.appendChild(cb);l.appendChild(s);ab.appendChild(l)});box.appendChild(c)})}
+function renderExams(){var h=(P.exams||[]).map(function(e){return e.d+': '+e.s+' من '+e.t}).join(' | ');$('exh').textContent=h?'نتايجك: '+h:''}
+async function mkExam(){
+ var box=$('exam');box.textContent='بجهّز الامتحان...';
+ try{var j=await sample.json('اعمل امتحان 8 أسئلة اختيار من متعدد (4 اختيارات) لمندوب مصري مبتدئ في بيع خدمات التسويق الرقمي للسوق السعودي. 4 أسئلة معرفة بالخدمات والمصطلحات والأسعار ('+PRICES+')، و4 أسئلة مواقف واقعية قصيرة (حالة نشاط سعودي بأرقام بسيطة، والسؤال: إيه الرد أو التوصية الأنسب). '+ctx()+' أسئلة جديدة كل مرة. JSON فقط: {"questions":[{"q":"","options":["","","",""],"answer":0,"why":"سطر بالمصري"}]}',{cache:false,modelTier:'default'});
+  var qs=j.questions.slice(0,8),sc=0,n=0;box.innerHTML='';
+  qs.forEach(function(q){var d=document.createElement('div');d.className='sk';var t=document.createElement('div');t.textContent=q.q;d.appendChild(t);var bs=[];
+   q.options.map(function(o,k){return {o:o,c:k===q.answer}}).sort(function(){return Math.random()-0.5}).forEach(function(op){var b=document.createElement('button');b.className='btn s';b.style.cssText='display:block;margin:4px 0;width:100%;text-align:start';b.textContent=op.o;bs.push([b,op.c]);
+    b.onclick=function(){if(d.getAttribute('data-a'))return;d.setAttribute('data-a','1');n++;if(op.c)sc++;else b.classList.add('bad');bs.forEach(function(x){if(x[1]){x[0].style.background='var(--ac)';x[0].style.color='#fff'}});var w=document.createElement('div');w.className='mu';w.textContent=q.why;d.appendChild(w);
+     if(n===qs.length){var r=document.createElement('div');r.innerHTML='<b>نتيجتك '+sc+' من '+qs.length+'</b>';box.appendChild(r);P.exams=[{s:sc,t:qs.length,d:new Date().toLocaleDateString('ar-EG')}].concat(P.exams||[]).slice(0,10);save();renderExams()}};
+    d.appendChild(b)});box.appendChild(d)})}catch(e){box.textContent='الامتحان فشل، جرّب تاني.'}}
+$('mkp').onclick=function(){if(sample)mkPlan()};$('mke').onclick=function(){if(sample)mkExam()};
+var IC={4:'<path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5M22 10v6"/>',5:'<rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/>',1:'<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>',2:'<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/>',3:'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/>'};
+var NV=[[4,'تعلّم'],[5,'خطتي'],[1,'تدريب'],[2,'ملفي'],[3,'مراجع']];
+function svg(p){return '<svg viewBox="0 0 24 24">'+p+'</svg>'}
+NV.forEach(function(x){$('t'+x[0]).innerHTML='<span class="ic">'+svg(IC[x[0]])+'</span>'+x[1]});
+var IS={mic:svg('<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/>'),stop:svg('<rect x="6" y="6" width="12" height="12" rx="2"/>')};
+$("mic").innerHTML=IS.mic;
+$("snd").innerHTML=svg('<path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/>');$("snd").classList.add("fl");
+$("hint").innerHTML=svg('<path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/>')+"ساعدني";
+$("end").innerHTML=svg('<g transform="rotate(135 12 12)">'+IC[1]+'</g>')+"إنهاء";
+$("go").innerHTML=svg(IC[1])+"ابدأ مكالمة جديدة";
+(function(){var s=$("diff"),g=$("seg");Array.prototype.forEach.call(s.options,function(o){var b=document.createElement("button");b.type="button";b.textContent=o.text.replace(/ \(.*\)/,"");b.className=o.value===s.value?"on":"";b.onclick=function(){s.value=o.value;Array.prototype.forEach.call(g.children,function(c){c.classList.remove("on")});b.classList.add("on")};g.appendChild(b)})})();
+function col(v){return v<50?"var(--bad)":v<75?"#d9921b":"var(--ac)"}
+function ring(v){return "<div class='ring' style='--v:"+v+";--rc:"+col(v)+"'><span>"+v+"</span></div>"}
+function updHd(){var a=avg();$("lvl").textContent=a==null?"ابدأ أول مكالمة":"مستواك "+Math.round(a)+"%"}
+var T0=0,TI=null;function startT(){clearInterval(TI);T0=Date.now();$("tm").textContent="00:00";TI=setInterval(function(){var q=Math.floor((Date.now()-T0)/1000);$("tm").textContent=("0"+Math.floor(q/60)).slice(-2)+":"+("0"+q%60).slice(-2)},1000)}
+function stopT(){clearInterval(TI)}
+$("sq").oninput=renderLessons;
+var VM=false,SPK=false,REC=null,rt=null,buf="",SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+$("vm").innerHTML=IS.mic+"مكالمة صوتية";$("orb").innerHTML=IS.mic;
+function vstat(t,c){$("vs").textContent=t;$("orb").className="orb "+(c||"")}
+function pickVoice(){var v=window.speechSynthesis?speechSynthesis.getVoices():[];return v.find(function(x){return x.lang.replace("_","-")==="ar-SA"})||v.find(function(x){return /^ar/i.test(x.lang)})||null}
+function speak(t){
+ if(!(VM||$("tts").checked)||!window.speechSynthesis)return;
+ var v=pickVoice();if(!v)add("hint","جهازك مفيهوش صوت عربي، فمش هتسمع العميل. ثبّت صوت عربي من إعدادات الجهاز (تحويل النص لكلام).");
+ try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang=v?v.lang:"ar-SA";if(v)u.voice=v;SPK=true;if(VM)vstat("العميل بيتكلم...","s");u.onend=u.onerror=function(){SPK=false;if(VM)vstat("اتكلم... أنا سامعك","l")};speechSynthesis.speak(u)}catch(e){SPK=false}
+}
+function arm(){clearTimeout(rt);rt=setTimeout(function(){if(!VM||SPK||busy)return;var t=$("inp").value.trim();buf="";if(!t)return;if(REC){try{REC.stop()}catch(e){}}send()},1600)}
+function bindDict(){
+ dict.onPartial(function(x){if(!VM||SPK||busy)return;$("inp").value=(buf?buf+" ":"")+x.text;arm()});
+ dict.onFinal(function(x){if(!VM||SPK||busy)return;buf=(buf?buf+" ":"")+x.text;$("inp").value=buf;arm()});
+ dict.onState(function(x){if(!VM||SPK)return;if(x.state==="listening")vstat("اتكلم... أنا سامعك","l");else vstat("المايك وقف. دوس على الدايرة عشان يرجع","")})}
+function startSR(){try{REC=new SR();REC.lang="ar-EG";REC.continuous=true;REC.interimResults=true;
+ REC.onresult=function(e){if(SPK||busy)return;var t="";for(var i=0;i<e.results.length;i++)t+=e.results[i][0].transcript+" ";$("inp").value=t.trim();arm()};
+ REC.onend=function(){if(VM){try{REC.start()}catch(x){}}};
+ REC.onerror=function(e){vstat("خطأ في المايك: "+e.error+(e.error==="not-allowed"?" (اسمح للمايك من إعدادات المتصفح)":""),"")};
+ REC.start();vstat("اتكلم... أنا سامعك","l")}catch(e){vstat("المايك مش شغال هنا","")}}
+$("orb").onclick=function(){if(!VM)return;if(dict){try{dict.start().catch(function(){})}catch(e){}}else if(SR&&!REC)startSR()};
+$("vm").onclick=async function(){
+ if(VM){VM=false;clearTimeout(rt);SPK=false;buf="";try{speechSynthesis.cancel()}catch(e){}if(REC){var r0=REC;REC=null;try{r0.stop()}catch(e){}}if(dict){try{await dict.stop()}catch(e){}}$("vp").classList.add("hide");$("vm").classList.remove("on");return}
+ if(!scen)return;
+ VM=true;buf="";$("vm").classList.add("on");$("vp").classList.remove("hide");$("tts").checked=true;
+ try{speechSynthesis.speak(new SpeechSynthesisUtterance(""))}catch(e){}
+ vstat("بجهّز المايك...","");
+ if(dict){bindDict();dict.start().then(function(){vstat("اتكلم... أنا سامعك","l")}).catch(function(e){vstat(e&&e.code==="not_granted"?"لازم تسمح للمايك وتجرّب تاني":"المايك ماتفتحش، دوس على الدايرة","")})}
+ else if(SR)startSR();
+ else vstat("المايك مش متاح في المتصفح ده. جرّب كروم أو اكتب ردودك.","");
+};
+var DSV=[{"n": "إدارة حسابات سوشيال", "p": "1500 ريال شهريًا"}, {"n": "إعلانات ممولة", "p": "2000 ريال شهريًا + ميزانية الإعلان"}, {"n": "تصميم هوية", "p": "1200 ريال مرة واحدة"}, {"n": "متجر على سلة أو زد", "p": "3500 ريال مرة واحدة"}, {"n": "سيو", "p": "1800 ريال شهريًا"}, {"n": "محتوى (8 فيديوهات)", "p": "2500 ريال شهريًا"}],DSC=[{"t": "افتتاحية رسمية", "b": "السلام عليكم ورحمة الله، معك [اسمك] من شركة [الشركة] للتسويق الرقمي. كيف حالك طال عمرك؟ أخذ من وقتك دقيقة؟"}, {"t": "بعد مشاهدة حسابه", "b": "السلام عليكم أستاذ [الاسم]، معك [اسمك] من [الشركة]. شفت حسابكم على إنستجرام وعجبني نشاطكم، وعندي فكرة تزيد لكم الحجوزات. مناسب نتكلم الحين؟"}, {"t": "موجّهة لنوع النشاط", "b": "حياك الله أستاذ [الاسم]، معك [اسمك] من [الشركة]. نساعد [نوع النشاط] يوصلون لعملاء جدد من سناب وتيك توك. تسمح لي بدقيقتين أعرّفك؟"}, {"t": "العميل مشغول", "b": "مساك الله بالخير، أعتذر لو أنا مزعجك. معك [اسمك] من [الشركة]، متى الوقت المناسب أتصل فيه عليك؟"}, {"t": "متابعة بعد رسالة واتساب", "b": "السلام عليكم أستاذ [الاسم]، معك [اسمك] من [الشركة]. أرسلت لك رسالة على الواتساب بخصوص تطوير مبيعاتك، حبيت أتأكد وصلتك."}],ed=-1;
+function ensure(){if(!P.svc||!P.svc.length)P.svc=JSON.parse(JSON.stringify(DSV));if(!P.scr)P.scr=JSON.parse(JSON.stringify(DSC));if(!P.obj||!P.obj.length)P.obj=JSON.parse(JSON.stringify(DOB))}
+function applySvc(){PRICES=P.svc.map(function(x){return x.n+" "+x.p}).join("؛ ")+".";$("chl").innerHTML=P.svc.map(function(x){return "<li>"+esc(x.n)+": "+esc(x.p)+"</li>"}).join("")+"<li>الفكرة: العميل يشتري نتيجة (مبيعات وحجوزات) مش خدمة</li>"}
+function mk(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function renderSvc(){var b=$("svcl");b.innerHTML="";P.svc.forEach(function(x,i){var r=mk("div","ed"),n=mk("input"),p=mk("input"),d=mk("button","btn s","حذف");n.value=x.n;n.placeholder="الخدمة";p.value=x.p;p.placeholder="السعر (مثال: 1500 ريال شهريًا)";
+ n.onchange=function(){x.n=n.value.trim();applySvc();save()};p.onchange=function(){x.p=p.value.trim();applySvc();save()};
+ d.onclick=function(){if(!d.dataset.c){d.dataset.c=1;d.textContent="تأكيد الحذف";return}P.svc.splice(i,1);applySvc();save();renderSvc()};
+ r.appendChild(n);r.appendChild(p);r.appendChild(d);b.appendChild(r)})}
+$("svca").onclick=function(){P.svc.push({n:"",p:""});renderSvc()};
+$("svcr").onclick=function(){if(!$("svcr").dataset.c){$("svcr").dataset.c=1;$("svcr").textContent="تأكيد الرجوع للافتراضي";return}$("svcr").dataset.c="";$("svcr").textContent="رجّع الافتراضي";P.svc=JSON.parse(JSON.stringify(DSV));applySvc();save();renderSvc()};
+function renderScr(){var b=$("scl");b.innerHTML="";P.scr.forEach(function(x,i){var c=mk("div","sk");c.appendChild(mk("b",0,x.t));var q=mk("div","mu",x.b);q.style.cssText="white-space:pre-wrap;color:var(--tx)";c.appendChild(q);
+ var e=mk("button","btn s","تعديل"),d=mk("button","btn s","حذف");d.style.marginInlineStart="6px";
+ e.onclick=function(){ed=i;$("st").value=x.t;$("sb").value=x.b;$("ssv").textContent="حفظ التعديل";$("st").scrollIntoView({block:"center"})};
+ d.onclick=function(){if(!d.dataset.c){d.dataset.c=1;d.textContent="تأكيد الحذف";return}P.scr.splice(i,1);save();renderScr()};
+ c.appendChild(e);c.appendChild(d);b.appendChild(c)});
+ var l=$("scrl");l.innerHTML="";P.scr.forEach(function(x){var t=mk("button","btn s",x.t);t.style.cssText="display:block;margin:5px 0;width:100%;text-align:start";t.onclick=function(){$("inp").value=x.b;$("inp").focus()};l.appendChild(t)})}
+$("ssv").onclick=function(){var t=$("st").value.trim(),b=$("sb").value.trim();if(!t||!b)return;if(ed>=0)P.scr[ed]={t:t,b:b};else P.scr.push({t:t,b:b});ed=-1;$("st").value="";$("sb").value="";$("ssv").textContent="إضافة سكربت";save();renderScr()};
+var CH='<svg class="ch2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>';
+var IC2={info:'<circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/>',cal:IC[5],check:'<path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/>',tag:'<path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.2"/>',msg:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',type:'<path d="M4 7V4h16v3M9 20h6M12 4v16"/>',globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',trophy:IC[2],bars:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',star:'<path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.8 5.7 21.2l1.6-7L2 9.6 9 9z"/>',target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/>',edit:'<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>'};
+function A(t,k,b,o){return "<details class='acc'"+(o?" open":"")+"><summary><span class='si'>"+svg(IC2[k])+"</span><span class='st'>"+t+"</span>"+CH+"</summary><div class='ab'>"+b+"</div></details>"}
+function accify(){Array.prototype.forEach.call(document.querySelectorAll(".card[data-ac]"),function(c){var b=c.querySelector("b"),d=document.createElement("details"),m=document.createElement("summary"),ab=document.createElement("div");d.className="acc";if(c.hasAttribute("data-open"))d.open=true;m.innerHTML="<span class='si'>"+svg(IC2[c.getAttribute("data-ac")])+"</span><span class='st'></span>"+CH;m.querySelector(".st").textContent=b.textContent;b.remove();ab.className="ab";while(c.firstChild)ab.appendChild(c.firstChild);d.appendChild(m);d.appendChild(ab);c.replaceWith(d)})}
+accify();
+$("tb1").innerHTML=svg(IC2.tag)+"الخدمات";$("tb2").innerHTML=svg(IC2.msg)+"سكربتات";
+function tool(w){var t=$("tp"),c=$("cheat"),q=$("scrd"),cur=t.classList.contains("hide")?"":(c.classList.contains("hide")?"s":"c");if(cur===w){t.classList.add("hide");$("tb1").classList.remove("on");$("tb2").classList.remove("on");return}t.classList.remove("hide");c.classList.toggle("hide",w!=="c");q.classList.toggle("hide",w!=="s");$("tb1").classList.toggle("on",w==="c");$("tb2").classList.toggle("on",w==="s")}
+$("tb1").onclick=function(){tool("c")};$("tb2").onclick=function(){tool("s")};
+$("bk").onclick=function(){var b=this;if(busy)return;if(hist.length>=2&&!b.dataset.c){b.dataset.c=1;add("hint","دوس على السهم تاني لو عايز تخرج من غير تقييم.");return}b.dataset.c="";stopT();if(VM)$("vm").click();hist=[];$("call").classList.add("hide");$("setup").classList.remove("hide");window.scrollTo(0,0)};
+var DOB=[{"o": "السعر غالي", "a": "أفهم عليك طال عمرك. خلني أسألك: كم عميل جديد تحتاج بالشهر عشان تغطي الاستثمار؟ نحن نشتغل على النتيجة مو بس الرقم، ونقدر نبدأ بباقة أصغر نقيس فيها النتيجة.", "k": "ارجع للنتيجة (العائد) مش للرقم، واعرض بداية أصغر"}, {"o": "جربت وكالة قبلك وما نفعت", "a": "الله يعوضك، وتجربتك السابقة تهمني. وش اللي ما عجبك بالضبط؟ عشان نتأكد ما يتكرر معك.", "k": "اسأل عن السبب الحقيقي ومتهاجمش الوكالة اللي قبلك"}, {"o": "خلني أفكر وأرجع لك", "a": "أبشر، خذ راحتك. بس عشان أرتّب لك الأمور صح، وش النقطة اللي تبغى تفكر فيها؟ ونحدد موعد قصير أكلمك فيه؟", "k": "اعرف المانع الحقيقي وثبّت موعد متابعة"}, {"o": "أنا أسوي إعلانات بنفسي", "a": "ما شاء الله، يعني عندك خبرة. وش النتيجة اللي جاتك لحد الحين؟ نقدر نساعدك توفّر وقتك وتركز على نشاطك.", "k": "احترم خبرته واسأل عن نتيجته، وقدّم نفسك كتوفير وقت"}, {"o": "وش الضمان إن المبيعات تزيد؟", "a": "سؤال في محله. ما أحد يضمن المبيعات بشكل مطلق، لكن نحدد معك مؤشرات واضحة ونعطيك تقارير نقيس عليها من أول شهر.", "k": "متوعدش بضمان، اوعد بالقياس والتقارير"}, {"o": "ما عندي ميزانية الحين", "a": "متفهم تمامًا. تبغى نبدأ بخدمة صغيرة، ونوسّع لما تشوف النتيجة؟", "k": "اعرض بداية أصغر بدل ما تقفل الباب"}, {"o": "عندنا شخص قريب يسوي لنا التسويق", "a": "ممتاز، دعم القريب شي حلو. وش أكثر شي تحتاجه ولسا ما تغطّيه؟ ممكن نكمّل شغله بخبرة متخصصة.", "k": "متقللش من اللي بيشتغل معاهم، دوّر على فجوة"}, {"o": "عندنا زباين كفاية", "a": "الحمد لله وتبارك الله. التسويق يثبّت اسمك قدام المنافسين ويحميك في المواسم الضعيفة. تبغى نشوف كيف نحافظ على هالمستوى؟", "k": "اربط بالاستمرارية والمنافسة مش بالحاجة الحالية"}, {"o": "ما أثق في التسويق الإلكتروني", "a": "فاهم عليك. وش الشي اللي يقلقك فيه؟ أقدر أوريك مثال لنشاط قريب من نشاطك.", "k": "اسأل عن القلق وقدّم دليل مشابه (بدون اختراع أرقام)"}, {"o": "أرسل لي التفاصيل على الواتساب", "a": "أبشر. عشان تكون مناسبة لك أحتاج أعرف نشاطك وهدفك، تسمح لي بسؤالين سريعين؟", "k": "اسأل أسئلة اكتشاف قبل ما تبعت أي حاجة"}, {"o": "أنا مو صاحب القرار", "a": "طبعًا. متى يكون المناسب نتكلم مع صاحب القرار؟ وتقدر تعرّفنا عليه؟", "k": "اطلب موعد مع صاحب القرار واحترم اللي بتكلمه"}, {"o": "ما أبغى ألتزم بشي طويل", "a": "فاهم عليك. وش اللي يقلقك بالالتزام؟ نناقش مدة وخطوة تناسبك.", "k": "اسأل عن القلق، متوعدش بشروط مش متأكد منها"}],eo=-1;
+function gen(o,box,onSave){
+ if(!sample){box.textContent="المولّد غير متاح في هذا العرض";return}
+ box.textContent="بولّد ردود...";
+ sample.json("أنت مدرب مبيعات. مندوب مصري مبتدئ يبيع خدمات تسويق رقمي للسوق السعودي. الخدمات والأسعار: "+PRICES+"\nالاعتراض اللي قابله: «"+o+"»\nولّد 3 ردود مختلفة تمامًا في الأسلوب والزاوية (مثل: تعاطف وسؤال، العودة للنتيجة، عرض بداية أصغر، قصة أو مقارنة، سؤال اكتشاف). كل رد جملة إلى ثلاث بلهجة سعودية بيضاء مؤدبة. ممنوع تضمن مبيعات أو تخترع أرقام أو سياسات للشركة. بعد كل رد سطر بالعامية المصرية يشرح التقنية. اختار زوايا جديدة كل مرة، رقم التنويع "+Math.floor(Math.random()*99999)+". JSON فقط: {\"replies\":[{\"style\":\"اسم الأسلوب\",\"say\":\"\",\"why\":\"\"}]}",{cache:false,modelTier:"default"}).then(function(j){box.innerHTML="";(j.replies||[]).slice(0,3).forEach(function(r){var c=mk("div","sk");c.appendChild(mk("span","tag",r.style));var q=mk("div",0,r.say);q.style.fontWeight="700";c.appendChild(q);c.appendChild(mk("div","mu",r.why));var b=mk("button","btn s","احفظ كرد");b.onclick=function(){onSave(r);b.textContent="اتحفظ"};c.appendChild(b);box.appendChild(c)})}).catch(function(){box.textContent="فشل التوليد، جرّب تاني."})}
+function applyObj(){OBJ=P.obj.map(function(x){return x.o})}
+function renderObj(){var b=$("objl");b.innerHTML="";
+ P.obj.forEach(function(x,i){var d=mk("details","card");d.appendChild(mk("summary",0,x.o)).style.fontWeight="700";
+  var a=mk("div",0,x.a||"لسه مفيش رد، دوس ولّد ردود");a.style.cssText="margin:8px 0;white-space:pre-wrap";d.appendChild(a);if(x.k)d.appendChild(mk("div","mu","التقنية: "+x.k));
+  var box=mk("div"),g=mk("button","btn s","ولّد ردود تانية"),e=mk("button","btn s","تعديل"),r=mk("button","btn s","حذف");g.style.marginTop=e.style.marginTop=r.style.marginTop="8px";e.style.marginInlineStart=r.style.marginInlineStart="6px";
+  g.onclick=function(){gen(x.o,box,function(q){x.a=q.say;x.k=q.style;save();renderObj()})};
+  e.onclick=function(){eo=i;$("oq").value=x.o;$("oa").value=x.a||"";$("os").textContent="حفظ التعديل";$("oq").scrollIntoView({block:"center"})};
+  r.onclick=function(){if(!r.dataset.c){r.dataset.c=1;r.textContent="تأكيد الحذف";return}P.obj.splice(i,1);save();renderObj()};
+  d.appendChild(g);d.appendChild(e);d.appendChild(r);d.appendChild(box);b.appendChild(d)});applyObj()}
+$("og").onclick=function(){var o=$("oq").value.trim();if(!o)return;gen(o,$("oqr"),function(q){var it={o:o,a:q.say,k:q.style};if(eo>=0){P.obj[eo]=it;eo=-1;$("os").textContent="احفظ في القايمة"}else P.obj.push(it);save();renderObj()})};
+$("os").onclick=function(){var o=$("oq").value.trim();if(!o)return;var it={o:o,a:$("oa").value.trim(),k:""};if(eo>=0){it.k=P.obj[eo].k;P.obj[eo]=it}else P.obj.push(it);eo=-1;$("oq").value="";$("oa").value="";$("os").textContent="احفظ في القايمة";save();renderObj()};
+if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});
+init().then(function(){ensure();renderLessons();updHd();applySvc();renderSvc();renderScr();renderObj()});
+</script>
+</body>
+</html>
