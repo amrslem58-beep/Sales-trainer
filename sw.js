@@ -1,4 +1,4 @@
-const C = "sales-trainer-1.7.0";
+const C = "sales-trainer-1.8.0";
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(C).then(c => c.addAll(["./", "index.html", "manifest.json", "icon.png"])));
   self.skipWaiting();
